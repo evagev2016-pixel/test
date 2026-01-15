@@ -18,6 +18,7 @@
     "install:browsers": "npx playwright install chromium firefox webkit || true",
     "worker": "tsx src/worker.ts",
     "orchestrator": "tsx src/orchestrator.ts",
+    "generate:jobs": "tsx scripts/generate-jobs.ts",
     "setup:aws": "tsx scripts/setup-aws.ts",
     "setup:jobs": "tsx scripts/setup-dynamodb-jobs.ts",
     "setup:runs": "tsx scripts/setup-dynamodb-runs.ts",

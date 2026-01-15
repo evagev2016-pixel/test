@@ -2,7 +2,8 @@
 import { promises as fs } from 'fs';
 import * as path from 'path';
 
-const STORAGE_PATH = process.env.STORAGE_PATH || '/tmp/adsterra-jobs';
+// Use ./storage for local files, /tmp for Render/cloud
+const STORAGE_PATH = process.env.STORAGE_PATH || (process.env.NODE_ENV === 'production' ? '/tmp/adsterra-jobs' : './storage');
 
 export class LocalQueue {
   private jobsFile: string;

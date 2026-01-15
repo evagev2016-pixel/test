@@ -12,6 +12,9 @@ COPY scripts/ ./scripts/
 COPY tsconfig.json ./
 COPY next.config.js ./
 
+# Copy pre-generated jobs (if they exist)
+COPY storage/ ./storage/ || true
+
 # Install browsers
 RUN npx playwright install chromium
 
