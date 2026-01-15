@@ -1,0 +1,87 @@
+services:
+  - type: web
+    name: adsterra-bot
+    env: docker
+    plan: free
+    
+    # Auto-deploy from GitHub
+    repo: https://github.com/evagev2016-pixel/test
+    branch: main
+    
+    # Build settings
+    buildCommand: npm install && npx playwright install chromium
+    startCommand: npm start
+    
+    # Environment variables (auto-inject)
+    envVars:
+      # Proxy Configuration
+      - key: PROXY_PROVIDER
+        value: brightdata
+      - key: BRIGHTDATA_HOST
+        value: brd.superproxy.io
+      - key: BRIGHTDATA_PORT
+        value: "33335"
+      - key: BRIGHTDATA_USERNAME
+        value: brd-customer-hl_db83aded-zone-mobile_proxy1
+      - key: BRIGHTDATA_PASSWORD
+        value: qig6iro1op2o
+      - key: BRIGHTDATA_ZONE
+        value: mobile_proxy1
+      - key: PROXY_COUNTRY
+        value: us
+      
+      # Storage Configuration
+      - key: USE_LOCAL_STORAGE
+        value: "true"
+      - key: STORAGE_PATH
+        value: /tmp/adsterra-jobs
+      
+      # Bot Configuration
+      - key: TOTAL_BOTS
+        value: "500"
+      - key: SESSIONS_PER_BOT
+        value: "1"
+      - key: TARGET_IMPRESSIONS
+        value: "500"
+      
+      # Worker Configuration
+      - key: MIN_CONCURRENT_JOBS
+        value: "2"
+      - key: CONCURRENT_JOBS
+        value: "5"
+      - key: MAX_CONCURRENT_JOBS
+        value: "5"
+      
+      # Browser Configuration
+      - key: BROWSER_HEADLESS
+        value: "true"
+      - key: BROWSER_TIMEOUT
+        value: "30000"
+      
+      # Timing Configuration
+      - key: MIN_SCROLL_WAIT
+        value: "0"
+      - key: MAX_SCROLL_WAIT
+        value: "0"
+      - key: MIN_AD_WAIT
+        value: "15000"
+      - key: MAX_AD_WAIT
+        value: "25000"
+      
+      # Queue Configuration
+      - key: QUEUE_POLL_INTERVAL
+        value: "1000"
+      - key: PROCESS_IMMEDIATELY
+        value: "true"
+      - key: MAX_RETRIES
+        value: "3"
+      
+      # Blog Configuration (UPDATE THIS!)
+      - key: BLOG_HOMEPAGE_URL
+        value: https://example.com
+      - key: SMART_LINK_TEXT
+        value: Smart Link
+      
+      # Node Environment
+      - key: NODE_ENV
+        value: production
