@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../Downloads/dynamodb_local_latest"
+		}
+	],
+	"settings": {}
+}
