@@ -12,11 +12,11 @@ COPY scripts/ ./scripts/
 COPY tsconfig.json ./
 COPY next.config.js ./
 
-# Copy pre-generated jobs (if they exist)
-COPY storage/ ./storage/ || true
+# Copy pre-generated jobs
+COPY storage/ ./storage/
 
-# Copy environment configuration
-COPY .env.render ./.env.render || true
+# Copy environment configuration for Render
+COPY .env.render ./
 
 # Install browsers
 RUN npx playwright install chromium
@@ -24,8 +24,8 @@ RUN npx playwright install chromium
 # Expose port (for monitoring, optional)
 EXPOSE 3000
 
-# Use .env.render in production if it exists
-RUN if [ -f .env.render ]; then cp .env.render .env; fi
+# Use .env.render as .env in production
+RUN cp .env.render .env
 
 # Run worker
 CMD ["npm", "start"]
